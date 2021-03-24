@@ -18,6 +18,24 @@ function showCollection(aCollection) {
   }
 }
 
+function findByArtist (artist){
+  let results = [];
+  for (let record in collection) {
+    if (collection[record].artist === artist){
+      results.push(collection[record]);
+    }
+  }
+  return results;
+}
+
+function search ( searchParameter ) {
+  let result = [];
+  for (let record in collection) {
+    for (let i in searchParameter)
+    if (collection[record] === )
+  }
+}
+
 addToCollection('2112', 'Rush', 1976);
 console.log(collection[collection.length-1]);
 addToCollection('Moving Pictures', 'Rush', 1981)
@@ -33,3 +51,7 @@ console.log(collection[collection.length-1]);
 console.log(collection);
 
 showCollection(collection);
+
+console.log(findByArtist('Rush'));
+console.log(findByArtist('Led Zeppelin'));
+console.log(findByArtist('Foo Fighters'));
