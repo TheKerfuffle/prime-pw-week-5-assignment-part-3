@@ -32,8 +32,11 @@ function search ( searchParameter ) {
   let result = [];
   for (let record in collection) {
     for (let i in searchParameter)
-    if (collection[record] === )
+    if (collection[record].artist === searchParameter[i]){
+      result.push(collection[record]);
+    }
   }
+  return result;
 }
 
 addToCollection('2112', 'Rush', 1976);
@@ -55,3 +58,7 @@ showCollection(collection);
 console.log(findByArtist('Rush'));
 console.log(findByArtist('Led Zeppelin'));
 console.log(findByArtist('Foo Fighters'));
+
+let thisSearch = { artist: 'Foo Fighters', artist: 'Rush'};
+
+console.log(search(thisSearch));
