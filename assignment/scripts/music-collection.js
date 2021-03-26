@@ -18,7 +18,8 @@ function showCollection(aCollection) {
   }
 }
 
-function findByArtist (artist){
+// Takes an artist string as input and will return all entries of collection that have the same artist
+function findByArtist (artist) {
   let results = [];
   for (let record in collection) {
     if (collection[record].artist === artist){
@@ -28,12 +29,107 @@ function findByArtist (artist){
   return results;
 }
 
-function search ( searchParameter ) {
-  let result = [];
+// Takes a year number as input and will return all entries of collection that have the same year published
+function findByYear (year){
+  let results = [];
   for (let record in collection) {
-    for (let i in searchParameter)
-    if (collection[record].artist === searchParameter[i]){
-      result.push(collection[record]);
+    if (collection[record].yearPublished === year){
+      results.push(collection[record]);
+    }
+  }
+  return results;
+}
+
+// Takes a title string as input and will return all entries of collection that have the same title
+function findByTitle (title){
+  let results = [];
+  for (let record in collection) {
+    if (collection[record].title === title){
+      results.push(collection[record]);
+    }
+  }
+  return results;
+}
+
+// search function should take in a single object with 3 POSSIBLE key value pairs, artist, title and year
+// and return an array with all matching possibilities and no repeated titles.
+function search ( searchParameter ) {
+  // initialize variables
+  let artist = searchParameter.artist;
+  let year = searchParameter.year;
+  let title = searchParameter.title;
+  let result = [];
+  let toRemove = [];
+  let finalResult = [];
+
+  // Case 1: empty object for search parameter
+  if (artist === undefined && year === undefined && title === undefined) {
+    return collection;
+  }
+
+  if (artist !== undefined) {
+    for (let i in collection) {
+      if (collection[i].artist === artist){
+        console.log('pushing');
+        result.push(collection[i]);
+      }
+    }
+  }
+
+  if (title !== undefined) {
+    for (let i in collection) {
+      if (collection[i].title === title){
+        console.log('pushing');
+        result.push(collection[record]);
+      }
+    }
+  }
+
+  if (year !== undefined) {
+    for (let i in collection) {
+      if (collection[i].yearPublished === year){
+        // for (let j in result) {
+        //   if (result[j] === collection[i])
+        // }
+        console.log('pushing');
+        result.push(collection[i]);
+      }
+    }
+  }
+
+
+  if (artist !== undefined) {
+    for (let i in result) {
+      if (result[i].artist !== artist) {
+        result.splice(i, 1);
+      }
+    }
+  }
+
+  if (title !== undefined) {
+    for (let i in result) {
+      if (result[i].title !== title) {
+        result.splice(i, 1);
+      }
+    }
+  }
+
+  if (year !== undefined) {
+    for (let i in result) {
+      if (result[i].yearPublished !== year) {
+        result.splice(i, 1);
+      }
+    }
+  }
+
+  for (let i in result) {
+    for (let j in result) {
+      if (i === j){
+      } else {
+        if (result[i].artist === result[j].artist && result[i].title === result[j].title && result[i].yearPublished === result[j].yearPublished) {
+          result.splice(i,1);
+        }
+      }
     }
   }
   return result;
@@ -59,6 +155,5 @@ console.log(findByArtist('Rush'));
 console.log(findByArtist('Led Zeppelin'));
 console.log(findByArtist('Foo Fighters'));
 
-let thisSearch = { artist: 'Foo Fighters', artist: 'Rush'};
-
+let thisSearch = {artist: 'Rush'};
 console.log(search(thisSearch));

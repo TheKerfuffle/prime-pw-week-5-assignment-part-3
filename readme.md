@@ -49,7 +49,7 @@ Update the `music-collection.js` file to do the following:
 ### Stretch goals
 
 - Create a function called `search`. This function should:
-  - Take an input parameter for a search criteria object. The search criteria might look something like this: 
+  - Take an input parameter for a search criteria object. The search criteria might look something like this:
   ```
   { artist: 'Ray Charles', year: 1957 }
   ```
